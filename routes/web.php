@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Barang;
+use App\Models\Siswa;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -101,6 +103,11 @@ Route::get('/ubahbarangs', function () {
     $data = Barang::find(1);
     $data->nama = "Tips Agar tidak pintar";
     $data->save();
+    return $data;
+});
+
+Route::get('/testsiswas', function () {
+    $data = Siswa::all();
     return $data;
 });
 

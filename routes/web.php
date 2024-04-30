@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Models\Post;
 use App\Models\Barang;
+use App\Models\Post;
 use App\Models\Siswa;
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -79,29 +78,29 @@ route::get('myname/{name?}', function ($a = "surya") {
 });
 
 // menampilkan data dari db
-Route::get('/testmodel', function(){
-    $data = Post::all();
-    return $data;
-});
+// Route::get('/testmodel', function () {
+//     $data = Post::all();
+//     return $data;
+// });
 
 Route::get('/testbarangs', function () {
     $data = Barang::all();
     return $data;
 });
 
-Route::get('/idbarangs', function () {
-    $data = Barang::find(1);
+Route::get('/idsiswa', function () {
+    $data = Siswa::find(1);
     return $data;
 });
 
-Route::get('/namabarangs', function () {
-    $data = Barang::where('nama', 'like', '%Tips Cepat Pintar%')->get();
+Route::get('/judulsiswa', function () {
+    $data = Siswa::where('nama', 'like', '%Surya%')->get();
     return $data;
 });
 
-Route::get('/ubahbarangs', function () {
+Route::get('/ubahsiswa', function () {
     $data = Barang::find(1);
-    $data->nama = "Tips Agar tidak pintar";
+    $data->nama = "Tripatih";
     $data->save();
     return $data;
 });
@@ -111,3 +110,33 @@ Route::get('/testsiswas', function () {
     return $data;
 });
 
+Route::get('/buatsiswa', function () {
+    $data = new App\Models\Siswa;
+    $data->nama = "Fatih";
+    $data->Jenis_kelamin = "Perempuan";
+    $data->alamat = "Jalan langit";
+    $data->agama = "Islam";
+    $data->telepon = "0821742131";
+    $data->email = "Fatih";
+    $data->save();
+    return $data;
+
+});
+
+Route::get('/testpost', function () {
+    $post = Post::all();
+    return view('tampil_post', compact('post'));
+});
+
+Route::get('/testbarang', function () {
+    $data = Barang::all();
+    return view('tampiling_barang', compact('data'));
+});
+
+Route::get('/testsiswa', function () {
+    $data = Siswa::all();
+    return view('tampiling_siswa', compact('data'));
+});
+
+// tampilkan dengan table
+// return view('tampil_siswa', compact('data'));

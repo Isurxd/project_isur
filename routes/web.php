@@ -3,6 +3,7 @@
 use App\Models\Barang;
 use App\Models\Post;
 use App\Models\Siswa;
+use App\Models\Item;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -136,6 +137,11 @@ Route::get('/testbarang', function () {
 Route::get('/testsiswa', function () {
     $data = Siswa::all();
     return view('tampiling_siswa', compact('data'));
+});
+
+Route::get('/item', function () {
+    $data = Item::all();
+    return $data;
 });
 
 // tampilkan dengan table

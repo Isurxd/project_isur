@@ -10,4 +10,5 @@ class Barang extends Model
     use HasFactory;
     protected $fillable = ['nama', 'jumlah'];
     public $timestamps = true;
+    
 }

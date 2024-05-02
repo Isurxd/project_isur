@@ -4,6 +4,8 @@ use App\Models\Barang;
 use App\Models\Post;
 use App\Models\Siswa;
 use App\Models\Item;
+use App\Models\Pengguna;
+use App\Models\Telepon;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -143,6 +145,17 @@ Route::get('/item', function () {
     $data = Item::all();
     return $data;
 });
+
+Route::get('/pengguna', function () {
+    $pengguna = Pengguna::all();
+    return view('tampil_pengguna', compact('pengguna'));
+});
+
+Route::get('/telepon', function () {
+    $telepon = Telepon::all();
+    return view('tampil_telepon', compact('telepon'));
+});
+
 
 // tampilkan dengan table
 // return view('tampil_siswa', compact('data'));

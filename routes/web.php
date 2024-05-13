@@ -6,6 +6,9 @@ use App\Models\Siswa;
 use App\Models\Item;
 use App\Models\Pengguna;
 use App\Models\Telepon;
+use App\Models\Produk;
+use App\Models\Merek;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -156,6 +159,33 @@ Route::get('/telepon', function () {
     return view('tampil_telepon', compact('telepon'));
 });
 
+//route Produk
+Route::get('/produk', function() {
+    $data = Produk::all();
+
+    return view('tampil_produk', compact('data'));
+});
+
+//route Transaksi
+Route::get('/transaksi', function() {
+    $data = Transaksi::all();
+
+    return view('tampil_transaksi', compact('data'));
+});
+
+//route Template
+Route::get('/template', function() {
+    $post = Post::all();
+    return view('template', compact('post'));
+
+});
+
+//route produk
+Route::get('/producs', function() {
+    $produk = Produk::all();
+    return view('template2', compact('produk'));
+
+});
 
 // tampilkan dengan table
 // return view('tampil_siswa', compact('data'));

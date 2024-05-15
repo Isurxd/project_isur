@@ -27,17 +27,20 @@
                 </center>
             </div>
             <div class="row mt-4">
-                @foreach ($post as $data)
-                <div class="col-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://cdn0-production-images-kly.akamaized.net/72FuVdD7Dq45MwMiK-QE4hGS5Lo=/1200x900/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/2754932/original/005940800_1552970791-fotoHL_kucing.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$data-> title }}</h5>
-                            <p class="card-text">{{$data-> content }}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                @foreach ($produk as $data)
+                    <div class="col-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="https://cdn1-production-images-kly.akamaized.net/wNBEh26xvx03Zg6sX7y6wWr5Zxk=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/4359411/original/090967800_1678873863-ZX-4R2.jpg"
+                                class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$data->nama_produk}}</h5>
+                                <p>{{ $data->jumlah}}</p>
+                                <p>{{ $data->tgl_produksi }}</p>
+                                <p>{{ $data->merek->nama_merk }}</p>
+                                <a href="template1/{{$data->id}}" class="btn btn-primary">Go somewhere</a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>

@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\MerekController;
+
+
 use App\Models\Barang;
 use App\Models\Post;
 use App\Models\Siswa;
@@ -9,6 +15,7 @@ use App\Models\Telepon;
 use App\Models\Produk;
 use App\Models\Merek;
 use App\Models\Transaksi;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -84,10 +91,10 @@ route::get('myname/{name?}', function ($a = "surya") {
 });
 
 // menampilkan data dari db
-// Route::get('/testmodel', function () {
-//     $data = Post::all();
-//     return $data;
-// });
+Route::get('/testmodel', function () {
+    $data = Post::all();
+    return $data;
+});
 
 Route::get('/testbarangs', function () {
     $data = Barang::all();
@@ -134,6 +141,11 @@ Route::get('/testpost', function () {
     return view('tampil_post', compact('post'));
 });
 
+Route::get('/testpost', function () {
+    $merek = Merek::all();
+    return view('tampil_merek', compact('merek'));
+});
+
 Route::get('/testbarang', function () {
     $data = Barang::all();
     return view('tampiling_barang', compact('data'));
@@ -173,19 +185,28 @@ Route::get('/transaksi', function() {
     return view('tampil_transaksi', compact('data'));
 });
 
-//route Template
-Route::get('/template', function() {
-    $post = Post::all();
-    return view('template', compact('post'));
-
-});
-
 //route produk
-Route::get('/producs', function() {
-    $produk = Produk::all();
-    return view('template2', compact('produk'));
+Route::get('producs',[ProdukController::class,'menampilkan']);
 
-});
+
+//route Template
+Route::get('Post',[PostController::class,'menampilkan']);
+Route::get('Post/{id}',[PostController::class,'show']);
+
+
+//route Template
+Route::get('Produk',[ProdukController::class,'menampilkan']);
+Route::get('Produk/{id}',[ProdukController::class,'show']);
+
+//route Template
+Route::get('Merek',[MerekController::class,'menampilkan']);
+Route::get('Merek/{id}',[MerekController::class,'show']);
 
 // tampilkan dengan table
 // return view('tampil_siswa', compact('data'));
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('brand', BrandController::class);

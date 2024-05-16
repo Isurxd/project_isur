@@ -7,8 +7,8 @@
                 <div class="card">
                     <div class="card-header">Data Brand</div>
 
-                    <div class="card-body">
-                        <a href="{{route('brand.create')}}" class="btn btn-primary">Add data</a>
+                    <div class="card-body shadow p-3 bg-body rounded">
+                        <a href="{{route('brand.create')}}" class="btn btn-outline-success">Add data</a>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -23,11 +23,15 @@
                                     <tr>
                                         <th scope="row">{{ $no++ }}</th>
                                         <td>{{ $data->name_brand }}</td>
+                                        <form action="{{route('brand.destroy', $data->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
                                         <td>
-                                            <a href="" class="btn btn-outline-success">Edit</a>
+                                            <a href="{{route('brand.edit', $data->id)}}" class="btn btn-outline-info">Edit</a>
                                             <a href="{{route('brand.show', $data->id)}}" class="btn btn-outline-warning">Show</a>
-                                            <a href="" class="btn btn-outline-danger">Delete</a>
+                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
                                         </td>
+                                        </form>
                                     </tr>
                                 @endforeach
                             </tbody>

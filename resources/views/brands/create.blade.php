@@ -13,12 +13,12 @@
                                 <label class="form-label">Name Brand</label>
                                 <input type="text" class="form-control" name="name_brand">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="" class="btn btn-outline-success">add</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
 @endsection

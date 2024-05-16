@@ -13,6 +13,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+        $this->middleware('auth');
+     }
+
     public function index()
     {
         $product = Product::all();
@@ -43,6 +49,15 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->id_brand   = $request->id_brand ;
+
+        //upload image
+        if($request->hasFile('cover')){
+            $img = $request->file('cover');
+            $name = rand(1000,9999) . $img->getClientOriginalName();
+            $img->move('images/product',$name);
+            $product->cover = $name;
+        }
+
         $product->save();
         return redirect()->route('product.index')->with('success', "data Berhasil Ditambahkan");
     }
@@ -86,9 +101,20 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->id_brand = $request->id_brand;
+
+        //upload image
+        if($request->hasFile('cover')){
+            $product->deleteImage();
+            $img = $request->file('cover');
+            $name = rand(1000,9999) . $img->getClientOriginalName();
+            $img->move('images/product',$name);
+            $product->cover = $name;
+        }
+
+
         $product->save();
         return redirect()->route('product.index');
-        return redirect()->route('product.index')->with('success', "data Berhasil Ditambahkan");
+        return redirect()->route('product.index')->with('success', "data Berhasil dirubah");
     }
 
     /**

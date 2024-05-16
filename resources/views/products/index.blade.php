@@ -22,6 +22,7 @@
                                     <th scope="col">Price</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Name Brand</th>
+                                    <th scope="col">Cover</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -34,6 +35,9 @@
                                         <td>{{ $data->price }}</td>
                                         <td>{{ $data->description }}</td>
                                         <td>{{ $data->brand->name_brand }}</td>
+                                        <td>
+                                            <img src="{{ asset('/images/product/' . $data->cover)}}" width="100">
+                                        </td>
                                         <form action="{{ route('product.destroy', $data->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

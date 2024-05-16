@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Edit Data Product</div>
                     <div class="card-body">
-                        <form action="{{ route('product.update', $product->id) }}" method="POST">
+                        <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
@@ -29,6 +29,11 @@
                                         <option value="{{$data->id}}" {{$data->id == $product->id_brand? 'selected' : ''}} >{{$data->name_brand}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="mb-3">
+                              <label class="form-label">Cover</label>
+                              <img src="{{ asset('/images/product/' . $product->cover)}}" width="100">
+                              <input type="file" class="form-control" name="cover">    
                             </div>
                             <a href="{{url('product')}}" class="btn btn-outline-success">Back</a>   
                             <button type="submit" class="btn btn-outline-info">Edit</button>
